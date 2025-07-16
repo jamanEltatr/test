@@ -1,16 +1,19 @@
-# app.py
-from flask import Flask, send_from_directory
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# Route to serve the main index.html file
+languages = [
+    {"name": "Spanish", "flag": "es.png", "speakers": "534 million"},
+    {"name": "French", "flag": "fr.png", "speakers": "280 million"},
+    {"name": "German", "flag": "de.png", "speakers": "130 million"},
+    {"name": "Japanese", "flag": "jp.png", "speakers": "128 million"},
+    {"name": "Italian", "flag": "it.png", "speakers": "85 million"},
+    {"name": "Russian", "flag": "ru.png", "speakers": "258 million"},
+]
+
 @app.route('/')
-def serve_index():
-    """Serves the index.html file from the current directory."""
-    return send_from_directory('.', 'index.html')
+def home():
+    return render_template('index.html', languages=languages)
 
 if __name__ == '__main__':
-    # Run the Flask development server
-    # debug=True automatically reloads the server when you make code changes
-    # and provides more detailed error messages.
-    app.run(debug=True, port=5000) # You can change the port if 5000 is in use
+    app.run(debug=True)
