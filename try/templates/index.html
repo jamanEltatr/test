@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinguaLearn | Master New Languages</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #4f46e5 0%, #10b981 100%);
+        }
+
+        .language-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e5e7eb;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            background-color: #4f46e5;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .flip-card {
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            backface-visibility: hidden;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.03);
+        }
+
+        .language-flag {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-language text-indigo-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-900">LinguaLearn</span>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="#" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                        <a href="#languages" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Languages</a>
+                        <a href="#features" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Features</a>
+                        <a href="#testimonials" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Testimonials</a>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Sign In</button>
+                    <button class="ml-4 bg-white hover:bg-gray-50 text-indigo-600 border border-indigo-600 px-4 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Sign Up</button>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden sm:hidden">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="#languages" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Languages</a>
+                <a href="#features" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Features</a>
+                <a href="#testimonials" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Testimonials</a>
+                <div class="mt-4 px-4">
+                    <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Sign In</button>
+                    <button class="w-full mt-2 bg-white hover:bg-gray-50 text-indigo-600 border border-indigo-600 px-4 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Learn a new language the fun way</h1>
+                    <p class="text-xl mb-8">Join millions of users worldwide and start speaking a new language today with our interactive, game-like lessons.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="bg-white text-indigo-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold text-lg transition duration-150 ease-in-out">Get Started</button>
+                        <button class="border-2 border-white text-white hover:bg-white hover:text-indigo-600 px-6 py-3 rounded-lg font-semibold text-lg transition duration-150 ease-in-out">How It Works</button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-indigo-400 rounded-full opacity-20 animate-pulse"></div>
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-green-400 rounded-full opacity-20 animate-pulse delay-200"></div>
+                        <div class="relative bg-white rounded-2xl shadow-xl overflow-hidden">
+                            <div class="bg-indigo-600 p-4 text-white">
+                                <div class="flex items-center">
+                                    <img src="https://flagcdn.com/w40/fr.png" alt="French Flag" class="language-flag mr-3">
+                                    <div>
+                                        <h3 class="font-bold">French Lesson</h3>
+                                        <p class="text-sm opacity-80">Beginner • Greetings</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="mb-6">
+                                    <div class="flex justify-between mb-2">
+                                        <span class="text-gray-700">Progress</span>
+                                        <span class="text-indigo-600 font-medium">25%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 25%"></div>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                                    <p class="text-gray-700 mb-2">Translate to French:</p>
+                                    <p class="text-xl font-bold mb-4">"Hello, how are you?"</p>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <button class="bg-indigo-100 hover:bg-indigo-200 text-indigo-700 py-2 px-4 rounded-lg transition duration-150 ease-in-out">Bonjour</button>
+                                        <button class="bg-indigo-100 hover:bg-indigo-200 text-indigo-700 py-2 px-4 rounded-lg transition duration-150 ease-in-out">Salut</button>
+                                        <button class="bg-indigo-100 hover:bg-indigo-200 text-indigo-700 py-2 px-4 rounded-lg transition duration-150 ease-in-out">Comment ça va?</button>
+                                        <button class="bg-indigo-100 hover:bg-indigo-200 text-indigo-700 py-2 px-4 rounded-lg transition duration-150 ease-in-out">Au revoir</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="languages" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Choose Your Language</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">We offer courses in 30+ languages, from the most popular to the less commonly taught.</p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div class="language-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 ease-in-out">
+                    <div class="p-6 text-center">
+                        <img src="https://flagcdn.com/w80/es.png" alt="Spanish Flag" class="w-16 h-16 mx-auto mb-4 rounded-full shadow">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-1">Spanish</h3>
+                        <p class="text-sm text-gray-500 mb-3">534 million speakers</p>
+                        <button class="text-indigo-600 hover:text-indigo-800 text-sm font-medium transition duration-150 ease-in-out">Start Learning</button>
+                    </div>
+                </div>
+
+                <div class="language-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 ease-in-out">
+                    <div class="p-6 text-center">
+                        <img src="https://flagcdn.com/w80/fr.png" alt="French Flag" class="w-16 h-16 mx-auto mb-4 rounded-full shadow">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-1">French</h3>
+                        <p class="text-sm text-gray-500 mb-3">280 million speakers</p>
+                        <button class="text-indigo-600 hover:text-indigo-800 text-sm font-medium transition duration-150 ease-in-out">Start Learning</button>
+                    </div>
+                </div>
+
+                <div class="language-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 ease-in-out">
+                    <div class="p-6 text-center">
+                        <img src="https://flagcdn.com/w80/de.png" alt="German Flag" class="w-16 h-16 mx-auto mb-4 rounded-full shadow">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-1">German</h3>
+                        <p class="text-sm text-gray-500 mb-3">130 million speakers</p>
+                        <button class="text-indigo-600 hover:text-indigo-800 text-sm font-medium transition duration-150 ease-in-out">Start Learning</button>
+                    </div>
+                </div>
+
+                <div class="language-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 ease-in-out">
+                    <div class="p-6 text-center">
+                        <img src="https://flagcdn.com/w80/jp.png" alt="Japanese Flag" class="w-16 h-16 mx-auto mb-4 rounded-full shadow">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-1">Japanese</h3>
+                        <p class="text-sm text-gray-500 mb-3">128 million speakers</p>
+                        <button class="text-indigo-600 hover:text-indigo-800 text-sm font-medium transition duration-150 ease-in-out">Start Learning</button>
+                    </div>
+                </div>
+
+                <div class="language-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 ease-in-out">
+                    <div class="p-6 text-center">
+                        <img src="https://flagcdn.com/w80/it.png" alt="Italian Flag" class="w-16 h-16 mx-auto mb-4 rounded-full shadow">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-1">Italian</h3>
+                        <p class="text-sm text-gray-500 mb-3">85 million speakers</p>
+                        <button class="text-indigo-600 hover:text-indigo-800 text-sm font-medium transition duration-150 ease-in-out">Start Learning</button>
+                    </div>
+                </div>
+
+                <div class="language-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 ease-in-out">
+                    <div class="p-6 text-center">
+                        <img src="https://flagcdn.com/w80/ru.png" alt="Russian Flag" class="w-16 h-16 mx-auto mb-4 rounded-full shadow">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-1">Russian</h3>
+                        <p class="text-sm text-gray-500 mb-3">258 million speakers</p>
+                        <button class="text-indigo-600 hover:text-indigo-800 text-sm font-medium transition duration-150 ease-in-out">Start Learning</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <button class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center justify-center mx-auto">
+                    View all 30+ languages
+                    <i class="fas fa-chevron-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Learn With LinguaLearn?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Our unique approach makes language learning effective, engaging, and fun.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="flip-card bg-white rounded-xl shadow-md overflow-hidden h-64">
+                    <div class="flip-card-inner h-full">
+                        <div class="flip-card-front p-6 flex flex-col items-center justify-center h-full">
+                            <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-gamepad text-indigo-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Game-like Lessons</h3>
+                            <p class="text-gray-600 text-center">Learning feels like playing a game</p>
+                        </div>
+                        <div class="flip-card-back bg-indigo-600 text-white p-6 flex flex-col items-center justify-center h-full">
+                            <h3 class="text-xl font-semibold mb-2">Game-like Lessons</h3>
+                            <p class="text-center">Our bite-sized lessons feel like playing a game. Earn points, level up, and compete with friends while learning.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card bg-white rounded-xl shadow-md overflow-hidden h-64">
+                    <div class="flip-card-inner h-full">
+                        <div class="flip-card-front p-6 flex flex-col items-center justify-center h-full">
+                            <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-robot text-indigo-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">AI Tutor</h3>
+                            <p class="text-gray-600 text-center">Personalized learning experience</p>
+                        </div>
+                        <div class="flip-card-back bg-indigo-600 text-white p-6 flex flex-col items-center justify-center h-full">
+                            <h3 class="text-xl font-semibold mb-2">AI Tutor</h3>
+                            <p class="text-center">Our AI tutor adapts to your learning style and pace, focusing on areas you need to improve for faster progress.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card bg-white rounded-xl shadow-md overflow-hidden h-64">
+                    <div class="flip-card-inner h-full">
+                        <div class="flip-card-front p-6 flex flex-col items-center justify-center h-full">
+                            <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-users text-indigo-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Community</h3>
+                            <p class="text-gray-600 text-center">Connect with learners worldwide</p>
+                        </div>
+                        <div class="flip-card-back bg-indigo-600 text-white p-6 flex flex-col items-center justify-center h-full">
+                            <h3 class="text-xl font-semibold mb-2">Community</h3>
+                            <p class="text-center">Practice with native speakers and fellow learners in our global community. Join conversations and language exchanges.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Track Your Progress</h3>
+                        <p class="text-gray-600 mb-6">Our dashboard helps you stay motivated by tracking your daily streaks, vocabulary growth, and fluency percentage.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span class="text-gray-700">Daily streaks and achievements</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span class="text-gray-700">Vocabulary growth tracker</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span class="text-gray-700">Personalized learning insights</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-8">
+                        <div class="bg-white rounded-lg shadow-md p-6 w-full max-w-md">
+                            <div class="flex items-center justify-between mb-6">
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Your Progress</h4>
+                                    <p class="text-sm text-gray-500">Spanish Beginner Course</p>
+                                </div>
+                                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
+                                    <span class="text-indigo-600 font-bold">25%</span>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-gray-700">Vocabulary</span>
+                                        <span class="text-indigo-600">120/500 words</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 24%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-gray-700">Grammar</span>
+                                        <span class="text-indigo-600">8/30 concepts</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 27%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-gray-700">Listening</span>
+                                        <span class="text-indigo-600">15/50 exercises</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 30%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-6 border-t border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm text-gray-500">Current streak</p>
+                                        <div class="flex items-center">
+                                            <i class="fas fa-fire text-orange-500 mr-2"></i>
+                                            <span class="font-semibold">7 days</span>
+                                        </div>
+                                    </div>
+                                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">What Our Learners Say</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Join millions of happy users who achieved their language goals with LinguaLearn.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-gray-50 rounded-xl p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J." class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Sarah J.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"I tried several language apps before, but LinguaLearn made the difference. The game-like approach kept me engaged, and I was able to hold basic conversations in Spanish after just two months!"</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fas fa-language mr-2"></i>
+                        <span>Learning Spanish</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-gray-50 rounded-xl p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael T." class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Michael T.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The AI tutor is incredible! It identified my weak spots in French grammar and created personalized exercises to help me improve. I'm now much more confident speaking with my French colleagues."</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fas fa-language mr-2"></i>
+                        <span>Learning French</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-gray-50 rounded-xl p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya K." class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Priya K.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"I love the community feature! I've made friends with native Japanese speakers who help me practice, and in return I help them with English. It's a win-win and makes learning so much more fun."</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fas fa-language mr-2"></i>
+                        <span>Learning Japanese</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-indigo-600 rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex items-center justify-between">
+                    <div class="p-8 md:p-12 md:w-2/3">
+                        <h3 class="text-2xl font-bold text-white mb-4">Ready to start your language journey?</h3>
+                        <p class="text-indigo-100 mb-6">Join over 10 million learners worldwide and discover how fun language learning can be.</p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <button class="bg-white text-indigo-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold text-lg transition duration-150 ease-in-out">Get Started for Free</button>
+                            <button class="border-2 border-white text-white hover:bg-white hover:text-indigo-600 px-6 py-3 rounded-lg font-semibold text-lg transition duration-150 ease-in-out">Take a Tour</button>
+                        </div>
+                    </div>
+                    <div class="hidden md:block md:w-1/3 p-8">
+                        <div class="relative">
+                            <div class="absolute -top-6 -left-6 w-16 h-16 bg-indigo-400 rounded-full opacity-20 animate-pulse"></div>
+                            <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-green-400 rounded-full opacity-20 animate-pulse delay-200"></div>
+                            <img src="https://images.unsplash.com/photo-1529333164850-45a5d17f8b79?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Happy learners" class="relative rounded-lg shadow-xl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">LinguaLearn</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">Press</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Product</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">Features</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">Pricing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">Languages</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">Download App</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 mb-2">Subscribe to our newsletter</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="bg-gray-800 text-white px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full">
+                        <button class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-r-lg transition duration-150 ease-in-out">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <i class="fas fa-language text-indigo-500 text-2xl mr-2"></i>
+                    <span class="text-xl font-bold">LinguaLearn</span>
+                </div>
+                <p class="text-gray-400 text-sm">© 2023 LinguaLearn. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Animate progress bars when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressFill = entry.target.querySelector('.progress-fill');
+                    const width = progressFill.style.width;
+                    progressFill.style.width = '0';
+                    setTimeout(() => {
+                        progressFill.style.width = width;
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.progress-bar').forEach(bar => {
+            observer.observe(bar);
+        });
+    </script>
+</body>
+</html>
